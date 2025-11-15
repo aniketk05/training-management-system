@@ -1,5 +1,6 @@
 # Build stage
-FROM maven:3.9-openjdk-17-slim AS build
+FROM maven:3.9-eclipse-temurin-17 AS build
+
 
 # Set working directory
 WORKDIR /app
@@ -15,7 +16,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 # Install curl for healthcheck
 RUN apk add --no-cache curl
